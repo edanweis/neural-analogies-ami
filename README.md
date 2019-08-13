@@ -78,15 +78,18 @@ If GPU backend isn't working:
 
 `wget https://github.com/awentzonline/image-analogies/releases/download/v0.0.5/vgg16_weights.h5`
 
-7. Upload images to current local directory
+7. Upload test images to ec2 instance
 
-`scp -i -r mykey.pem ubuntu@ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com:image-analogies/scripts/out .`
+`scp -i mykey.pem -r ~/neural-analogies/scripts/images ubuntu@ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com:image-analogies/scripts/images .`
 
 ## Run make_image_analogy
 
-8. `make_image_analogy.py $MASK_IMAGE 
+8. `make_image_analogy.py images/mask.jpg images/prime.jpg images/newmask.jpg ./out --model=brute --patch-size=3`
 
+If there is an error, try without brute-force patch-matching:
 
-## Download output
+`make_image_analogy.py images/mask.jpg images/prime.jpg images/newmask.jpg ./out`
 
-9. `scp -i -r mykey.pem ubuntu@ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com:/path/to/folder .`
+## Download output images to current local directory
+
+9. `scp -i -r mykey.pem ubuntu@ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com:/image-analogies/scripts/out .`
