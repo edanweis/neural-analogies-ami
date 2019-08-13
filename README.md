@@ -8,7 +8,16 @@ How to setup AWS AMI for neural-analogies
 conda info --envs
 activate theano_p36
 ```
-2. Set Keras `sudo nano ~/keras/keras.json` backend
+2. Find where keras is installed, in python console:
+```
+import os
+print(os.path.expanduser('~'))
+```
+
+`$ /home/ec2-user/`
+
+
+2b. Set Keras backend there, eg: `sudo nano /home/ec2-user/.keras/keras.json`
 ```
 {
 "image_dim_ordering":"th",
